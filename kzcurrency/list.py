@@ -1,4 +1,12 @@
-import urllib
+import sys
+
+if sys.version_info[0] == 3:
+    from urllib.request import urlopen
+else:
+    # Not Python 3 - today, it is most likely to be Python 2
+    # But note that this might need an update when Python 4
+    # might be around one day
+    from urllib import urlopen
 from xml.dom import minidom
 
 class KZCurrency(object):
@@ -7,7 +15,7 @@ class KZCurrency(object):
         self.url = 'http://www.nationalbank.kz/rss/rates_all.xml'
 
     def parse(self):
-        usock = urllib.urlopen(self.url) 
+        usock = urlopen(self.url) 
         xmldoc = minidom.parse(usock)                              
         usock.close()                                              
         return xmldoc.toxml()
