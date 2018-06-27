@@ -15,6 +15,7 @@ Example
 
     from kzcurrency.list import KZCurrency
 
+    currency = KZCurrency()
     print(currency.list())
     print(currency.rates())
     print(currency.get('USD'))
